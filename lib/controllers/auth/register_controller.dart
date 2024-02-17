@@ -20,7 +20,9 @@ class RegisterController extends RegisterControllerAbs {
   }
 
   @override
-  register() {}
+  register() {
+    Get.offNamed(AppRoutes.checkEmail);
+  }
 
   @override
   void onInit() {

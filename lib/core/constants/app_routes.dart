@@ -6,6 +6,7 @@ class AppRoutes {
   //Authentification
   static const String login = '/login';
   static const String register = '/register';
+  static const String checkEmail = '/check_email';
   static const String successSignUp = '/success_sign_up';
   static const String forgotPassword = '/forgot_password';
   static const String verifyCode = '/verify_code';

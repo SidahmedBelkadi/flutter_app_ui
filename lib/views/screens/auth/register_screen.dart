@@ -78,7 +78,9 @@ class RegisterScreen extends StatelessWidget {
                   obsecureText: true,
                 ),
                 const SizedBox(height: 20),
-                CustomAuthButton(buttonText: "Sign up", onPressed: () {}),
+                CustomAuthButton(
+                    buttonText: "Sign up",
+                    onPressed: () => registerController.register()),
                 const Spacer(),
                 QuestionAboutPossesionOfAccountAuth(
                   question: "Already have an account?",

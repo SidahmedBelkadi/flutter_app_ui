@@ -4,15 +4,15 @@ import 'package:course/views/widgets/auth/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class SuccessSignUpScreen extends StatelessWidget {
-  const SuccessSignUpScreen({super.key});
+class SuccessResetPasswordScreen extends StatelessWidget {
+  const SuccessResetPasswordScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Success",
+          "Success reset password",
           style: Theme.of(context)
               .textTheme
               .displayLarge!
@@ -35,7 +35,7 @@ class SuccessSignUpScreen extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             Text(
-              "You have complete the Sign up process with success.",
+              "You have complete the Reset password process with success.",
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.displayLarge,
             ),
