@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
             fontSize: 16,
           ),
         ),
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
         useMaterial3: true,
       ),
       home: const LanguagesScreen(),

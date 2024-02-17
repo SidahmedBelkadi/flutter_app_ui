@@ -21,6 +21,7 @@ class RegisterController extends RegisterControllerAbs {
 
   @override
   register() {}
+
   @override
   void onInit() {
     username = TextEditingController();

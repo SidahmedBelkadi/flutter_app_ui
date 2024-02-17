@@ -58,7 +58,7 @@ class LoginScreen extends StatelessWidget {
                   obsecureText: true,
                 ),
                 const SizedBox(height: 20),
-                buildForgotPasswordAndRememberMeRow(),
+                const ForgotPassword(),
                 const SizedBox(height: 40),
                 CustomAuthButton(buttonText: "Sign In", onPressed: () {}),
                 const Spacer(),
@@ -75,8 +75,13 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
+}
 
-  Row buildForgotPasswordAndRememberMeRow() {
+class ForgotPassword extends GetView<LoginController> {
+  const ForgotPassword({super.key});
+
+  @override
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -90,7 +95,7 @@ class LoginScreen extends StatelessWidget {
           ],
         ),
         TextButton(
-          onPressed: () {},
+          onPressed: () => controller.goToForgotPassword(),
           child: Text(
             "Forgot password",
             style: TextStyle(
