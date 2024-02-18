@@ -1,5 +1,5 @@
+import 'package:course/controllers/auth/success_sign_up_controller.dart';
 import 'package:course/core/constants/app_colors.dart';
-import 'package:course/core/constants/app_routes.dart';
 import 'package:course/views/widgets/auth/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +9,9 @@ class SuccessSignUpScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SuccessSignUpController successSignUpController =
+        Get.put(SuccessSignUpController());
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -42,7 +45,7 @@ class SuccessSignUpScreen extends StatelessWidget {
             const Spacer(flex: 3),
             CustomAuthButton(
                 buttonText: "Login",
-                onPressed: () => Get.offNamed(AppRoutes.login)),
+                onPressed: () => successSignUpController.goToLogin()),
             const Spacer(flex: 1),
           ],
         ),

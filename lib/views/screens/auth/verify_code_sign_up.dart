@@ -1,21 +1,21 @@
-import 'package:course/controllers/auth/check_email_controller.dart';
+import 'package:course/controllers/auth/verify_code_sign_up_controller.dart';
 import 'package:course/core/constants/app_colors.dart';
-import 'package:course/views/widgets/auth/custom_button.dart';
-import 'package:course/views/widgets/auth/custom_form_field.dart';
 import 'package:course/views/widgets/auth/custom_header_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 
-class CheckEmailScreen extends StatelessWidget {
-  const CheckEmailScreen({super.key});
+class VerifyCodeSignUpScreen extends StatelessWidget {
+  const VerifyCodeSignUpScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    CheckEmailController checkEmailController = Get.put(CheckEmailController());
+    VerifyCodeSignUpController verifyCodeSignUpController =
+        Get.put(VerifyCodeSignUpController());
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Check Email",
+          "OTP verification",
           style: Theme.of(context)
               .textTheme
               .displayLarge!
@@ -34,22 +34,24 @@ class CheckEmailScreen extends StatelessWidget {
             children: [
               const Spacer(flex: 1),
               const CustomAuthHeaderText(
-                  title: "Check Email",
+                  title: "OTP Verification",
                   bodyText:
-                      "Please enter your email and we will send\n you a link to return your account."),
+                      "Please enter the code sent to\n sidahmed@gmail.com"),
               const SizedBox(height: 50),
-              CustomAuthTextFild(
-                hinText: "Enter your Email",
-                labelText: "Email",
-                icon: Icons.email_outlined,
-                textEditingController: checkEmailController.email,
+              OtpTextField(
+                numberOfFields: 5,
+                borderColor: AppColors.primaryColor,
+                focusedBorderColor: AppColors.primaryColor,
+                fieldWidth: 50,
+                borderRadius: BorderRadius.circular(12),
+                showFieldAsBox: true,
+                onCodeChanged: (String code) {
+                  //handle validation or checks here
+                },
+                onSubmit: (String verificationCode) {
+                  verifyCodeSignUpController.goToSuccessSignUp();
+                },
               ),
-              const SizedBox(height: 30),
-              CustomAuthButton(
-                  buttonText: "Check",
-                  onPressed: () {
-                    checkEmailController.goVerifyCodeSignUp();
-                  }),
               const Spacer(flex: 4),
             ],
           ),

@@ -12,4 +12,5 @@ class AppRoutes {
   static const String verifyCode = '/verify_code';
   static const String resetPassword = '/reset_password';
   static const String successResePassword = '/success_reset_password';
+  static const String verifyCodeSignUp = '/verify_code_sign_up';
 }

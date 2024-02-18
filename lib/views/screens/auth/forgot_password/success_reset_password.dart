@@ -1,5 +1,5 @@
+import 'package:course/controllers/auth/success_reset_password_controller.dart';
 import 'package:course/core/constants/app_colors.dart';
-import 'package:course/core/constants/app_routes.dart';
 import 'package:course/views/widgets/auth/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -9,6 +9,9 @@ class SuccessResetPasswordScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SuccessResetPasswordController successResetPasswordController =
+        Get.put(SuccessResetPasswordController());
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -42,7 +45,7 @@ class SuccessResetPasswordScreen extends StatelessWidget {
             const Spacer(flex: 3),
             CustomAuthButton(
                 buttonText: "Login",
-                onPressed: () => Get.offNamed(AppRoutes.login)),
+                onPressed: () => successResetPasswordController.goToLogin()),
             const Spacer(flex: 1),
           ],
         ),
