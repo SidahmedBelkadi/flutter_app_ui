@@ -20,7 +20,7 @@ class LanguagesScreen extends GetView<LocalizationController> {
               Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Text(
-                  "choose_lang".tr,
+                  "1".tr,
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.displayLarge,
                 ),

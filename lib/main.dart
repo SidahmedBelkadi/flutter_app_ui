@@ -23,25 +23,11 @@ class MyApp extends StatelessWidget {
     LocalizationController localizationController =
         Get.put(LocalizationController());
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'Flutter ecommerce base course project',
       debugShowCheckedModeBanner: false,
       translations: Transation(),
       locale: localizationController.language,
-      theme: ThemeData(
-        fontFamily: "Poppins",
-        textTheme: TextTheme(
-          displayLarge:
-              const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          bodySmall: TextStyle(
-            height: 2,
-            color: AppColors.grey,
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
-        ),
-        colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
-        useMaterial3: true,
-      ),
+      theme: localizationController.appTheme,
       home: const LanguagesScreen(),
       routes: routes,
     );

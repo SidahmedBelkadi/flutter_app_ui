@@ -20,9 +20,9 @@ class CustomOnBordingButton extends GetView<OnBoardingController> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(12),
         ),
-        child: const Text(
-          "Continue",
-          style: TextStyle(
+        child: Text(
+          "8".tr,
+          style: const TextStyle(
             color: Colors.white,
             fontSize: 18,
             fontWeight: FontWeight.bold,

@@ -31,9 +31,9 @@ class OnBoardingScreen extends StatelessWidget {
                   const SizedBox(height: 10),
                   TextButton(
                     onPressed: () => Get.offAllNamed(AppRoutes.login),
-                    child: const Text(
-                      "Skip",
-                      style: TextStyle(
+                    child: Text(
+                      "skip".tr,
+                      style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
                         color: Colors.black,
