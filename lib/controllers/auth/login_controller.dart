@@ -14,6 +14,14 @@ class LoginController extends LoginControllerAbs {
   late TextEditingController email;
   late TextEditingController password;
 
+  bool isObsecurePassword = true;
+
+  showPassword() {
+    print("hello");
+    isObsecurePassword = !isObsecurePassword;
+    update();
+  }
+
   @override
   login() {
     var formData = formState.currentState;

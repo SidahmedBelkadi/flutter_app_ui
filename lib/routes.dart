@@ -1,5 +1,5 @@
 import 'package:course/core/constants/app_routes.dart';
-import 'package:course/views/screens/auth/check_email.dart';
+import 'package:course/core/middlewares/init_middleware.dart';
 import 'package:course/views/screens/auth/forgot_password/forgot_password.dart';
 import 'package:course/views/screens/auth/login_screen.dart';
 import 'package:course/views/screens/auth/register_screen.dart';
@@ -10,22 +10,33 @@ import 'package:course/views/screens/auth/forgot_password/verify_code.dart';
 import 'package:course/views/screens/auth/verify_code_sign_up.dart';
 import 'package:course/views/screens/languages_screen.dart';
 import 'package:course/views/screens/onboarding_screen.dart';
-import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/routes/get_route.dart';
 
-Map<String, Widget Function(BuildContext)> routes = {
+List<GetPage<dynamic>>? routes = [
   //Localization
-  AppRoutes.languages: (context) => const LanguagesScreen(),
+  GetPage(
+    name: "/",
+    page: () => const LanguagesScreen(),
+    middlewares: [
+      InitMiddleware(),
+    ],
+  ),
   // OnBoarding
-  AppRoutes.onBoarding: (context) => const OnBoardingScreen(),
+  GetPage(name: AppRoutes.onBoarding, page: () => const OnBoardingScreen()),
   //Authentification
-  AppRoutes.login: (context) => const LoginScreen(),
-  AppRoutes.register: (context) => const RegisterScreen(),
-  AppRoutes.checkEmail: (context) => const CheckEmailScreen(),
-  AppRoutes.successSignUp: (context) => const SuccessSignUpScreen(),
-  AppRoutes.forgotPassword: (context) => const ForgotPasswordScreen(),
-  AppRoutes.verifyCode: (context) => const VerifyCodeScreen(),
-  AppRoutes.resetPassword: (context) => const ResetPasswordScreen(),
-  AppRoutes.successResePassword: (context) =>
-      const SuccessResetPasswordScreen(),
-  AppRoutes.verifyCodeSignUp: (context) => const VerifyCodeSignUpScreen(),
-};
+  GetPage(name: AppRoutes.login, page: () => const LoginScreen()),
+  GetPage(name: AppRoutes.register, page: () => const RegisterScreen()),
+  GetPage(
+      name: AppRoutes.successSignUp, page: () => const SuccessSignUpScreen()),
+  GetPage(
+      name: AppRoutes.forgotPassword, page: () => const ForgotPasswordScreen()),
+  GetPage(name: AppRoutes.verifyCode, page: () => const VerifyCodeScreen()),
+  GetPage(
+      name: AppRoutes.resetPassword, page: () => const ResetPasswordScreen()),
+  GetPage(
+      name: AppRoutes.successResePassword,
+      page: () => const SuccessResetPasswordScreen()),
+  GetPage(
+      name: AppRoutes.verifyCodeSignUp,
+      page: () => const VerifyCodeSignUpScreen()),
+];

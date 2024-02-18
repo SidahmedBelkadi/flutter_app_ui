@@ -1,5 +1,6 @@
 import 'package:course/controllers/auth/login_controller.dart';
 import 'package:course/core/constants/app_colors.dart';
+import 'package:course/core/functions/alert_exit_app.dart';
 import 'package:course/core/functions/input_validation.dart';
 import 'package:course/views/widgets/auth/custom_button.dart';
 import 'package:course/views/widgets/auth/custom_header_text.dart';
@@ -28,58 +29,77 @@ class LoginScreen extends StatelessWidget {
         backgroundColor: AppColors.backgroundColor,
         centerTitle: true,
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-            child: Form(
-              key: loginController.formState,
-              child: Column(
-                children: [
-                  const AuthLogo(),
-                  const SizedBox(height: 30),
-                  const CustomAuthHeaderText(
-                      title: "Welcome Back",
-                      bodyText:
-                          "Sign in with your email and password\n or continue with social media."),
-                  const SizedBox(height: 80),
-                  CustomAuthTextFild(
-                    hinText: "Enter your Email",
-                    labelText: "Email",
-                    icon: Icons.email_outlined,
-                    textEditingController: loginController.email,
-                    validator: (value) => validateInput(
-                        value: value!,
-                        type: InputTypes.email,
-                        inputName: 'Username',
-                        max: 100,
-                        min: 5),
-                  ),
-                  const SizedBox(height: 30),
-                  CustomAuthTextFild(
-                      hinText: "Enter your password",
-                      labelText: "Password",
-                      icon: Icons.key_outlined,
-                      textEditingController: loginController.password,
-                      obsecureText: true,
-                      validator: (value) =>
-                          validatePassword(value: value!, max: 30, min: 8)),
-                  const SizedBox(height: 20),
-                  const ForgotPassword(),
-                  const Spacer(),
-                  CustomAuthButton(
-                      buttonText: "Sign In",
-                      onPressed: () => loginController.login()),
-                  const Spacer(flex: 1),
-                  QuestionAboutPossesionOfAccountAuth(
-                    question: "Dont't have an account?",
-                    linkText: "Sign Up",
-                    onPressed: () => loginController.goToSignUp(),
-                  ),
-                  const Spacer(flex: 3),
-                ],
+      body: PopScope(
+        canPop: false,
+        onPopInvoked: (bool didPop) async {
+          if (!didPop) {
+            alertDoYouWantToExitTheApp();
+          }
+        },
+        child: SafeArea(
+          child: SingleChildScrollView(
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
+              child: Form(
+                key: loginController.formState,
+                child: Column(
+                  children: [
+                    const AuthLogo(),
+                    const SizedBox(height: 30),
+                    const CustomAuthHeaderText(
+                        title: "Welcome Back",
+                        bodyText:
+                            "Sign in with your email and password\n or continue with social media."),
+                    const SizedBox(height: 80),
+                    CustomAuthTextFild(
+                      hinText: "Enter your Email",
+                      labelText: "Email",
+                      icon: Icons.email_outlined,
+                      textEditingController: loginController.email,
+                      validator: (value) => validateInput(
+                          value: value!,
+                          type: InputTypes.email,
+                          inputName: 'Username',
+                          max: 100,
+                          min: 5),
+                      textInputType: TextInputType.emailAddress,
+                    ),
+                    const SizedBox(height: 30),
+                    GetBuilder<LoginController>(
+                      builder: (loginController) {
+                        return CustomAuthTextFild(
+                          hinText: "Enter your password",
+                          labelText: "Password",
+                          icon: loginController.isObsecurePassword
+                              ? Icons.visibility_outlined
+                              : Icons.visibility_off_outlined,
+                          textEditingController: loginController.password,
+                          obsecureText: loginController.isObsecurePassword,
+                          onObsecureIconTap: () =>
+                              loginController.showPassword(),
+                          validator: (value) =>
+                              validatePassword(value: value!, max: 30, min: 8),
+                          textInputType: TextInputType.text,
+                        );
+                      },
+                    ),
+                    const SizedBox(height: 20),
+                    const ForgotPassword(),
+                    const Spacer(),
+                    CustomAuthButton(
+                        buttonText: "Sign In",
+                        onPressed: () => loginController.login()),
+                    const Spacer(flex: 1),
+                    QuestionAboutPossesionOfAccountAuth(
+                      question: "Dont't have an account?",
+                      linkText: "Sign Up",
+                      onPressed: () => loginController.goToSignUp(),
+                    ),
+                    const Spacer(flex: 3),
+                  ],
+                ),
               ),
             ),
           ),

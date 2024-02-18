@@ -38,7 +38,8 @@ validateInput(
   }
 
   if (type == InputTypes.phone) {
-    if (!GetUtils.isPhoneNumber(value)) {
+    final regExp = RegExp(r"^(05|06|07)\d{8}$");
+    if (!regExp.hasMatch(value)) {
       return "Please enter valid phone number.";
     }
   }

@@ -1,5 +1,4 @@
 import 'package:course/controllers/onboarding_controller.dart';
-import 'package:course/core/constants/app_routes.dart';
 import 'package:course/views/widgets/onBoarding/custom_button.dart';
 import 'package:course/views/widgets/onBoarding/custom_slider.dart';
 import 'package:course/views/widgets/onBoarding/dot_controller.dart';
@@ -12,7 +11,7 @@ class OnBoardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     //Dependency injection of onBoarding controller
-    Get.put(OnBoardingController());
+    OnBoardingController onBoardingController = Get.put(OnBoardingController());
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -30,7 +29,7 @@ class OnBoardingScreen extends StatelessWidget {
                   const CustomOnBordingButton(),
                   const SizedBox(height: 10),
                   TextButton(
-                    onPressed: () => Get.offAllNamed(AppRoutes.login),
+                    onPressed: () => onBoardingController.goToLogin(),
                     child: Text(
                       "skip".tr,
                       style: const TextStyle(

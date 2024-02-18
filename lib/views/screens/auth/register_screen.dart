@@ -1,5 +1,6 @@
 import 'package:course/controllers/auth/register_controller.dart';
 import 'package:course/core/constants/app_colors.dart';
+import 'package:course/core/functions/alert_exit_app.dart';
 import 'package:course/core/functions/input_validation.dart';
 import 'package:course/views/widgets/auth/custom_button.dart';
 import 'package:course/views/widgets/auth/custom_form_field.dart';
@@ -16,18 +17,25 @@ class RegisterScreen extends StatelessWidget {
     RegisterController registerController = Get.put(RegisterController());
 
     return Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "Sign Up",
-            style: Theme.of(context)
-                .textTheme
-                .displayLarge!
-                .copyWith(color: AppColors.grey),
-          ),
-          backgroundColor: AppColors.backgroundColor,
-          centerTitle: true,
+      appBar: AppBar(
+        title: Text(
+          "Sign Up",
+          style: Theme.of(context)
+              .textTheme
+              .displayLarge!
+              .copyWith(color: AppColors.grey),
         ),
-        body: SingleChildScrollView(
+        backgroundColor: AppColors.backgroundColor,
+        centerTitle: true,
+      ),
+      body: PopScope(
+        canPop: false,
+        onPopInvoked: (bool didPop) async {
+          if (!didPop) {
+            alertDoYouWantToExitTheApp();
+          }
+        },
+        child: SingleChildScrollView(
           child: Container(
             height: Get.height,
             width: double.infinity,
@@ -52,6 +60,7 @@ class RegisterScreen extends StatelessWidget {
                         inputName: "Username",
                         max: 50,
                         min: 8),
+                    textInputType: TextInputType.text,
                   ),
                   const SizedBox(height: 20),
                   CustomAuthTextFild(
@@ -65,6 +74,7 @@ class RegisterScreen extends StatelessWidget {
                         inputName: "Email",
                         max: 50,
                         min: 8),
+                    textInputType: TextInputType.emailAddress,
                   ),
                   const SizedBox(height: 20),
                   CustomAuthTextFild(
@@ -72,13 +82,13 @@ class RegisterScreen extends StatelessWidget {
                     labelText: "Phone",
                     icon: Icons.phone_outlined,
                     textEditingController: registerController.phone,
-                    obsecureText: true,
                     validator: (value) => validateInput(
                         value: value!,
                         type: InputTypes.phone,
                         inputName: "Phone number",
                         max: 11,
                         min: 9),
+                    textInputType: TextInputType.phone,
                   ),
                   const SizedBox(height: 20),
                   CustomAuthTextFild(
@@ -94,6 +104,7 @@ class RegisterScreen extends StatelessWidget {
                         inputName: "Password",
                         max: 50,
                         min: 8),
+                    textInputType: TextInputType.text,
                   ),
                   const SizedBox(height: 20),
                   CustomAuthTextFild(
@@ -110,6 +121,7 @@ class RegisterScreen extends StatelessWidget {
                         inputName: "Confirmation",
                         max: 50,
                         min: 8),
+                    textInputType: TextInputType.text,
                   ),
                   const SizedBox(height: 20),
                   CustomAuthButton(
@@ -121,11 +133,14 @@ class RegisterScreen extends StatelessWidget {
                     linkText: "Sign In",
                     onPressed: () => registerController.goToLogin(),
                   ),
-                  const Spacer(flex: 10),
+                  const Spacer(flex: 15),
+                  const SizedBox(height: 50),
                 ],
               ),
             ),
           ),
-        ));
+        ),
+      ),
+    );
   }
 }

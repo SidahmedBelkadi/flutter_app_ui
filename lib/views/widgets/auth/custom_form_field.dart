@@ -5,8 +5,10 @@ class CustomAuthTextFild extends StatelessWidget {
   final String hinText;
   final String labelText;
   final IconData icon;
+  final void Function()? onObsecureIconTap;
   final bool obsecureText;
   final TextEditingController textEditingController;
+  final TextInputType textInputType;
   final String? Function(String?) validator;
 
   const CustomAuthTextFild({
@@ -17,12 +19,14 @@ class CustomAuthTextFild extends StatelessWidget {
     required this.textEditingController,
     this.obsecureText = false,
     required this.validator,
+    required this.textInputType,
+    this.onObsecureIconTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
-      keyboardType: TextInputType.emailAddress,
+      keyboardType: textInputType,
       controller: textEditingController,
       obscureText: obsecureText,
       validator: validator,
@@ -36,7 +40,10 @@ class CustomAuthTextFild extends StatelessWidget {
             const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
         label: Text(labelText),
         floatingLabelBehavior: FloatingLabelBehavior.always,
-        suffixIcon: Icon(icon),
+        suffixIcon: InkWell(
+          onTap: onObsecureIconTap,
+          child: Icon(icon),
+        ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(70),
           gapPadding: 15,

@@ -2,7 +2,6 @@ import 'package:course/controllers/localization_controller.dart';
 import 'package:course/core/localization/translation.dart';
 import 'package:course/core/services/services.dart';
 import 'package:course/routes.dart';
-import 'package:course/views/screens/languages_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,8 +26,8 @@ class MyApp extends StatelessWidget {
       translations: Transation(),
       locale: localizationController.language,
       theme: localizationController.appTheme,
-      home: const LanguagesScreen(),
-      routes: routes,
+      initialRoute: '/',
+      getPages: routes,
     );
   }
 }

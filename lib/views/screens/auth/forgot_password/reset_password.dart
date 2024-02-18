@@ -54,6 +54,7 @@ class ResetPasswordScreen extends StatelessWidget {
                       inputName: "Password",
                       max: 50,
                       min: 8),
+                  textInputType: TextInputType.emailAddress,
                 ),
                 const SizedBox(height: 30),
                 CustomAuthTextFild(
@@ -70,6 +71,7 @@ class ResetPasswordScreen extends StatelessWidget {
                       inputName: "Confirmation",
                       max: 50,
                       min: 8),
+                  textInputType: TextInputType.text,
                 ),
                 const SizedBox(height: 20),
                 const SizedBox(height: 30),

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 abstract class RegisterControllerAbs extends GetxController {
   register();
   goToLogin();
+  goVerifyCodeSignUp();
 }
 
 class RegisterController extends RegisterControllerAbs {
@@ -25,10 +26,15 @@ class RegisterController extends RegisterControllerAbs {
   register() {
     var formData = formState.currentState;
     if (formData!.validate()) {
-      Get.offNamed(AppRoutes.checkEmail);
+      goVerifyCodeSignUp();
     } else {
       print("======================== Not Valide ================");
     }
+  }
+
+  @override
+  goVerifyCodeSignUp() {
+    Get.offNamed(AppRoutes.verifyCodeSignUp);
   }
 
   @override
