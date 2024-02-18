@@ -1,5 +1,6 @@
 import 'package:course/controllers/auth/check_email_controller.dart';
 import 'package:course/core/constants/app_colors.dart';
+import 'package:course/core/functions/input_validation.dart';
 import 'package:course/views/widgets/auth/custom_button.dart';
 import 'package:course/views/widgets/auth/custom_form_field.dart';
 import 'package:course/views/widgets/auth/custom_header_text.dart';
@@ -38,17 +39,26 @@ class CheckEmailScreen extends StatelessWidget {
                   bodyText:
                       "Please enter your email and we will send\n you a link to return your account."),
               const SizedBox(height: 50),
-              CustomAuthTextFild(
-                hinText: "Enter your Email",
-                labelText: "Email",
-                icon: Icons.email_outlined,
-                textEditingController: checkEmailController.email,
+              Form(
+                key: checkEmailController.formState,
+                child: CustomAuthTextFild(
+                  hinText: "Enter your Email",
+                  labelText: "Email",
+                  icon: Icons.email_outlined,
+                  textEditingController: checkEmailController.email,
+                  validator: (value) => validateInput(
+                      value: value!,
+                      type: InputTypes.email,
+                      inputName: "Email",
+                      max: 50,
+                      min: 8),
+                ),
               ),
               const SizedBox(height: 30),
               CustomAuthButton(
                   buttonText: "Check",
                   onPressed: () {
-                    checkEmailController.goVerifyCodeSignUp();
+                    checkEmailController.checkEmail();
                   }),
               const Spacer(flex: 4),
             ],

@@ -1,5 +1,4 @@
 import 'package:course/controllers/localization_controller.dart';
-import 'package:course/core/constants/app_colors.dart';
 import 'package:course/core/localization/translation.dart';
 import 'package:course/core/services/services.dart';
 import 'package:course/routes.dart';

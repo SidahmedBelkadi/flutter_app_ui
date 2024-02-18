@@ -9,11 +9,18 @@ abstract class LoginControllerAbs extends GetxController {
 }
 
 class LoginController extends LoginControllerAbs {
+  GlobalKey<FormState> formState = GlobalKey<FormState>();
+
   late TextEditingController email;
   late TextEditingController password;
 
   @override
-  login() {}
+  login() {
+    var formData = formState.currentState;
+    if (formData!.validate()) {
+      print("======================== Go To Home Screen ================");
+    }
+  }
 
   @override
   goToSignUp() {

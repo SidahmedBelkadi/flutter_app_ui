@@ -8,10 +8,16 @@ abstract class CheckEmailControllerAbs extends GetxController {
 }
 
 class CheckEmailController extends CheckEmailControllerAbs {
+  GlobalKey<FormState> formState = GlobalKey<FormState>();
+
   late TextEditingController email;
   @override
   checkEmail() {
-    // TODO: implement checkEmail
+    var formData = formState.currentState;
+
+    if (formData!.validate()) {
+      goVerifyCodeSignUp();
+    }
   }
 
   @override

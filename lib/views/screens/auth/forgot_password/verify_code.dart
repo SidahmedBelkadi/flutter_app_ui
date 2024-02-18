@@ -1,7 +1,5 @@
 import 'package:course/controllers/auth/verify_code_controller.dart';
 import 'package:course/core/constants/app_colors.dart';
-import 'package:course/views/widgets/auth/custom_button.dart';
-import 'package:course/views/widgets/auth/custom_form_field.dart';
 import 'package:course/views/widgets/auth/custom_header_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';

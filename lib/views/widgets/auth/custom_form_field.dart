@@ -7,6 +7,7 @@ class CustomAuthTextFild extends StatelessWidget {
   final IconData icon;
   final bool obsecureText;
   final TextEditingController textEditingController;
+  final String? Function(String?) validator;
 
   const CustomAuthTextFild({
     super.key,
@@ -15,17 +16,22 @@ class CustomAuthTextFild extends StatelessWidget {
     required this.icon,
     required this.textEditingController,
     this.obsecureText = false,
+    required this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       keyboardType: TextInputType.emailAddress,
       controller: textEditingController,
       obscureText: obsecureText,
+      validator: validator,
+      autovalidateMode: AutovalidateMode.onUserInteraction,
       decoration: InputDecoration(
         hintText: hinText,
         hintStyle: TextStyle(fontSize: 14, color: AppColors.grey),
+        errorStyle:
+            const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
         label: Text(labelText),

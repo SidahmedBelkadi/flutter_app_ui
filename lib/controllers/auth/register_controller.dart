@@ -8,6 +8,8 @@ abstract class RegisterControllerAbs extends GetxController {
 }
 
 class RegisterController extends RegisterControllerAbs {
+  GlobalKey<FormState> formState = GlobalKey<FormState>();
+
   late TextEditingController username;
   late TextEditingController email;
   late TextEditingController phone;
@@ -21,7 +23,12 @@ class RegisterController extends RegisterControllerAbs {
 
   @override
   register() {
-    Get.offNamed(AppRoutes.checkEmail);
+    var formData = formState.currentState;
+    if (formData!.validate()) {
+      Get.offNamed(AppRoutes.checkEmail);
+    } else {
+      print("======================== Not Valide ================");
+    }
   }
 
   @override
