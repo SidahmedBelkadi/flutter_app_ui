@@ -1,6 +1,8 @@
 class AppImage {
   static const String rootImagesPath = "assets/images";
+  static const String rootLottie = "assets/lottie";
 
+  // Images
   static const String authLogo = "$rootImagesPath/logo.png";
 
   static const String onBoardingImageOne = "$rootImagesPath/onboardingone.PNG";
@@ -9,4 +11,12 @@ class AppImage {
       "$rootImagesPath/onboardingthree.PNG";
   static const String onBoardingImageFour =
       "$rootImagesPath/onboardingfour.PNG";
+
+  //Lottie
+  static const String loading = "$rootLottie/loading2.json";
+  static const String offline = "$rootLottie/offline.json";
+  static const String noData = "$rootLottie/no_data.json";
+  static const String serverError = "$rootLottie/server_error.json";
+  static const String formLoading = "$rootLottie/loading_form.json";
+  static const String warning = "$rootLottie/warning.json";
 }

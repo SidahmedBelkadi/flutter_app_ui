@@ -1,7 +1,9 @@
 import 'package:course/controllers/auth/login_controller.dart';
+import 'package:course/core/classes/request_status.dart';
 import 'package:course/core/constants/app_colors.dart';
 import 'package:course/core/functions/alert_exit_app.dart';
 import 'package:course/core/functions/input_validation.dart';
+import 'package:course/core/functions/loading_form.dart';
 import 'package:course/views/widgets/auth/custom_button.dart';
 import 'package:course/views/widgets/auth/custom_header_text.dart';
 import 'package:course/views/widgets/auth/custom_form_field.dart';
@@ -88,9 +90,17 @@ class LoginScreen extends StatelessWidget {
                     const SizedBox(height: 20),
                     const ForgotPassword(),
                     const Spacer(),
-                    CustomAuthButton(
-                        buttonText: "Sign In",
-                        onPressed: () => loginController.login()),
+                    GetBuilder<LoginController>(
+                      builder: (controller) {
+                        return CustomAuthButton(
+                            buttonText: "Sign in",
+                            loading: controller.requestStatus ==
+                                    RequestStatus.loading
+                                ? customLoadingForm()
+                                : null,
+                            onPressed: () => loginController.login());
+                      },
+                    ),
                     const Spacer(flex: 1),
                     QuestionAboutPossesionOfAccountAuth(
                       question: "Dont't have an account?",

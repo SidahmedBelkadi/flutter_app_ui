@@ -1,5 +1,7 @@
 import 'package:course/controllers/auth/verify_code_sign_up_controller.dart';
+import 'package:course/core/classes/request_status.dart';
 import 'package:course/core/constants/app_colors.dart';
+import 'package:course/core/functions/default_loading.dart';
 import 'package:course/views/widgets/auth/custom_header_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
@@ -25,36 +27,44 @@ class VerifyCodeSignUpScreen extends StatelessWidget {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: double.infinity,
-          padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 30),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Spacer(flex: 1),
-              const CustomAuthHeaderText(
-                  title: "OTP Verification",
-                  bodyText:
-                      "Please enter the code sent to\n sidahmed@gmail.com"),
-              const SizedBox(height: 50),
-              OtpTextField(
-                numberOfFields: 5,
-                borderColor: AppColors.primaryColor,
-                focusedBorderColor: AppColors.primaryColor,
-                fieldWidth: 50,
-                borderRadius: BorderRadius.circular(12),
-                showFieldAsBox: true,
-                onCodeChanged: (String code) {
-                  //handle validation or checks here
-                },
-                onSubmit: (String verificationCode) {
-                  verifyCodeSignUpController.goToSuccessSignUp();
-                },
-              ),
-              const Spacer(flex: 4),
-            ],
-          ),
+        child: GetBuilder<VerifyCodeSignUpController>(
+          builder: (controller) {
+            return controller.requestStatus == RequestStatus.loading
+                ? customDefaultAppLoading()
+                : Container(
+                    height: MediaQuery.of(context).size.height,
+                    width: double.infinity,
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20, horizontal: 30),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Spacer(flex: 1),
+                        CustomAuthHeaderText(
+                            title: "OTP Verification",
+                            bodyText:
+                                "Please enter the code sent to\n ${verifyCodeSignUpController.email}"),
+                        const SizedBox(height: 50),
+                        OtpTextField(
+                          numberOfFields: 5,
+                          borderColor: AppColors.primaryColor,
+                          focusedBorderColor: AppColors.primaryColor,
+                          fieldWidth: 50,
+                          borderRadius: BorderRadius.circular(12),
+                          showFieldAsBox: true,
+                          onCodeChanged: (String code) {
+                            //handle validation or checks here
+                          },
+                          onSubmit: (String verificationCode) {
+                            verifyCodeSignUpController.checkCode(
+                                verificationCode: verificationCode);
+                          },
+                        ),
+                        const Spacer(flex: 4),
+                      ],
+                    ),
+                  );
+          },
         ),
       ),
     );

@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 
 class CustomAuthButton extends StatelessWidget {
   final String buttonText;
+  final Widget? loading;
   final void Function()? onPressed;
   const CustomAuthButton({
     super.key,
     required this.buttonText,
     this.onPressed,
+    this.loading,
   });
 
   @override
@@ -21,14 +23,15 @@ class CustomAuthButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
         ),
-        child: Text(
-          buttonText,
-          style: TextStyle(
-            color: AppColors.backgroundColor,
-            fontWeight: FontWeight.bold,
-            fontSize: 16,
-          ),
-        ),
+        child: loading ??
+            Text(
+              buttonText,
+              style: TextStyle(
+                color: AppColors.backgroundColor,
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
       ),
     );
   }

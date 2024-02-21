@@ -1,7 +1,9 @@
 import 'package:course/controllers/auth/register_controller.dart';
+import 'package:course/core/classes/request_status.dart';
 import 'package:course/core/constants/app_colors.dart';
 import 'package:course/core/functions/alert_exit_app.dart';
 import 'package:course/core/functions/input_validation.dart';
+import 'package:course/core/functions/loading_form.dart';
 import 'package:course/views/widgets/auth/custom_button.dart';
 import 'package:course/views/widgets/auth/custom_form_field.dart';
 import 'package:course/views/widgets/auth/custom_header_text.dart';
@@ -124,9 +126,17 @@ class RegisterScreen extends StatelessWidget {
                     textInputType: TextInputType.text,
                   ),
                   const SizedBox(height: 20),
-                  CustomAuthButton(
-                      buttonText: "Sign up",
-                      onPressed: () => registerController.register()),
+                  GetBuilder<RegisterController>(
+                    builder: (controller) {
+                      return CustomAuthButton(
+                          buttonText: "Sign up",
+                          loading:
+                              controller.requestStatus == RequestStatus.loading
+                                  ? customLoadingForm()
+                                  : null,
+                          onPressed: () => registerController.register());
+                    },
+                  ),
                   const Spacer(),
                   QuestionAboutPossesionOfAccountAuth(
                     question: "Already have an account?",

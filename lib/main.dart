@@ -1,3 +1,4 @@
+import 'package:course/bindings/initial_bindings.dart';
 import 'package:course/controllers/localization_controller.dart';
 import 'package:course/core/localization/translation.dart';
 import 'package:course/core/services/services.dart';
@@ -26,7 +27,8 @@ class MyApp extends StatelessWidget {
       translations: Transation(),
       locale: localizationController.language,
       theme: localizationController.appTheme,
-      initialRoute: '/',
+      initialBinding: InitialBindings(),
+      initialRoute: '/test',
       getPages: routes,
     );
   }

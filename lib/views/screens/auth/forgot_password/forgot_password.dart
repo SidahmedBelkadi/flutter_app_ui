@@ -1,6 +1,8 @@
 import 'package:course/controllers/auth/forgot_password_controller.dart';
+import 'package:course/core/classes/request_status.dart';
 import 'package:course/core/constants/app_colors.dart';
 import 'package:course/core/functions/input_validation.dart';
+import 'package:course/core/functions/loading_form.dart';
 import 'package:course/views/widgets/auth/custom_button.dart';
 import 'package:course/views/widgets/auth/custom_form_field.dart';
 import 'package:course/views/widgets/auth/custom_header_text.dart';
@@ -57,11 +59,16 @@ class ForgotPasswordScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 30),
-              CustomAuthButton(
-                  buttonText: "Check",
-                  onPressed: () {
-                    forgotPasswordController.checkEmail();
-                  }),
+              GetBuilder<ForgotPasswordController>(
+                builder: (controller) {
+                  return CustomAuthButton(
+                      buttonText: "Check",
+                      loading: controller.requestStatus == RequestStatus.loading
+                          ? customLoadingForm()
+                          : null,
+                      onPressed: () => controller.checkEmail());
+                },
+              ),
               const Spacer(flex: 4),
             ],
           ),
