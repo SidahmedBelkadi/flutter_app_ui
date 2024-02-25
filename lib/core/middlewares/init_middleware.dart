@@ -12,6 +12,9 @@ class InitMiddleware extends GetMiddleware {
 
   @override
   RouteSettings? redirect(String? route) {
+    if (services.sharedPreferences.getString("user_token") != null) {
+      return const RouteSettings(name: AppRoutes.home);
+    }
     if (services.sharedPreferences.getBool(OnBoardingController.onBoarding) ==
         true) {
       return const RouteSettings(name: AppRoutes.login);

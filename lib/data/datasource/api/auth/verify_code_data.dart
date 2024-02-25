@@ -9,10 +9,13 @@ class VerifyCodeData {
     required String email,
     required String otp,
   }) async {
-    var response = await httpRequest.post(endpoint: AppLink.verifyCode, data: {
-      "email": email,
-      "otp": otp,
-    });
+    var response = await httpRequest.sendRequest(
+        endpoint: AppLink.verifyCode,
+        data: {
+          "email": email,
+          "otp": otp,
+        },
+        method: 'POST');
     return response.fold((l) => l, (r) => r);
   }
 }

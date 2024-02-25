@@ -10,6 +10,7 @@ import 'package:course/views/screens/auth/forgot_password/verify_code.dart';
 import 'package:course/views/screens/auth/verify_code_sign_up.dart';
 import 'package:course/views/screens/home_screen.dart';
 import 'package:course/views/screens/languages_screen.dart';
+import 'package:course/views/screens/main_screen.dart';
 import 'package:course/views/screens/onboarding_screen.dart';
 // import 'package:course/views/screens/test_screen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -48,5 +49,5 @@ List<GetPage<dynamic>>? routes = [
       page: () => const VerifyCodeSignUpScreen()),
 
   // =============================== Home ========================= //
-  GetPage(name: AppRoutes.home, page: () => const HomeScreen()),
+  GetPage(name: AppRoutes.home, page: () => const MainScreen()),
 ];

@@ -35,7 +35,7 @@ class CustomAuthTextFild extends StatelessWidget {
         hintText: hinText,
         hintStyle: TextStyle(fontSize: 14, color: AppColors.grey),
         errorStyle:
-            const TextStyle(fontSize: 14, fontWeight: FontWeight.normal),
+            const TextStyle(fontSize: 11, fontWeight: FontWeight.normal),
         contentPadding:
             const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
         label: Text(labelText),

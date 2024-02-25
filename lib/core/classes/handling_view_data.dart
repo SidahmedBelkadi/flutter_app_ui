@@ -13,8 +13,8 @@ class HandlingViewData extends StatelessWidget {
   Widget build(BuildContext context) {
     return requestStatus == RequestStatus.loading
         ? Center(
-            child:
-                LottieBuilder.asset(AppImage.loading, height: 250, width: 250),
+            child: LottieBuilder.asset(AppImage.formLoading,
+                height: 250, width: 250),
           )
         : requestStatus == RequestStatus.offlineFailure
             ? Center(

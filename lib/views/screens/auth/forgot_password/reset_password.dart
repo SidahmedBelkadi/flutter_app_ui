@@ -80,7 +80,7 @@ class ResetPasswordScreen extends StatelessWidget {
                 GetBuilder<ResetPasswordController>(
                   builder: (controller) {
                     return CustomAuthButton(
-                        buttonText: "Sign up",
+                        buttonText: "Confirm",
                         loading:
                             controller.requestStatus == RequestStatus.loading
                                 ? customLoadingForm()

@@ -9,11 +9,13 @@ class VerifyCodeSignUpData {
     required String email,
     required String otp,
   }) async {
-    var response = await httpRequest
-        .post(endpoint: AppLink.signUpEmailVerification, data: {
-      "email": email,
-      "otp": otp,
-    });
+    var response = await httpRequest.sendRequest(
+        method: 'POST',
+        endpoint: AppLink.signUpEmailVerification,
+        data: {
+          "email": email,
+          "otp": otp,
+        });
     return response.fold((l) => l, (r) => r);
   }
 }

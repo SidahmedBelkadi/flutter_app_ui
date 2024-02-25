@@ -12,13 +12,16 @@ class SignupData {
     required String password,
     required String passwordConfirmation,
   }) async {
-    var response = await httpRequest.post(endpoint: AppLink.register, data: {
-      "username": username,
-      "email": email,
-      "phone": phone,
-      "password": password,
-      "password_confirmation": passwordConfirmation,
-    });
+    var response = await httpRequest.sendRequest(
+        endpoint: AppLink.register,
+        data: {
+          "username": username,
+          "email": email,
+          "phone": phone,
+          "password": password,
+          "password_confirmation": passwordConfirmation,
+        },
+        method: 'POST');
     print(response);
     return response.fold((l) => l, (r) => r);
   }

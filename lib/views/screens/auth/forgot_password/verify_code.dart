@@ -39,10 +39,10 @@ class VerifyCodeScreen extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const Spacer(flex: 1),
-                        const CustomAuthHeaderText(
+                        CustomAuthHeaderText(
                             title: "OTP Verification",
                             bodyText:
-                                "Please enter the code sent to\n sidahmed@gmail.com"),
+                                "Please enter the code sent to\n ${controller.email}"),
                         const SizedBox(height: 50),
                         OtpTextField(
                           numberOfFields: 5,

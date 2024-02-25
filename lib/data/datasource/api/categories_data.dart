@@ -1,14 +1,13 @@
 import 'package:course/core/classes/http_request.dart';
 import 'package:course/core/constants/app_link.dart';
 
-class LogoutData {
+class CategoriesData {
   HttpRequest httpRequest;
-  LogoutData(this.httpRequest);
+  CategoriesData(this.httpRequest);
 
-  logout({required String token}) async {
+  categoriesData({required String token}) async {
     var response = await httpRequest.sendRequest(
-        endpoint: AppLink.logout, data: {}, token: token, method: 'POST');
-    print("logoiut ======================= $response");
+        endpoint: AppLink.allCategories, data: {}, method: 'GET', token: token);
     return response.fold((l) => l, (r) => r);
   }
 }

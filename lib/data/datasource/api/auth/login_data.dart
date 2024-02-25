@@ -9,10 +9,13 @@ class LoginData {
     required String email,
     required String password,
   }) async {
-    var response = await httpRequest.post(endpoint: AppLink.login, data: {
-      "email": email,
-      "password": password,
-    });
+    var response = await httpRequest.sendRequest(
+        endpoint: AppLink.login,
+        data: {
+          "email": email,
+          "password": password,
+        },
+        method: 'POST');
     print(response);
     return response.fold((l) => l, (r) => r);
   }

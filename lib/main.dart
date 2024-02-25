@@ -28,7 +28,6 @@ class MyApp extends StatelessWidget {
       locale: localizationController.language,
       theme: localizationController.appTheme,
       initialBinding: InitialBindings(),
-      initialRoute: '/test',
       getPages: routes,
     );
   }

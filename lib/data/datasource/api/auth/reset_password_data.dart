@@ -10,12 +10,14 @@ class ResetPasswordData {
     required String otp,
     required String password,
   }) async {
-    var response =
-        await httpRequest.post(endpoint: AppLink.resetpassword, data: {
-      "email": email,
-      "password": password,
-      "otp": otp,
-    });
+    var response = await httpRequest.sendRequest(
+        endpoint: AppLink.resetpassword,
+        data: {
+          "email": email,
+          "password": password,
+          "otp": otp,
+        },
+        method: 'POST');
     return response.fold((l) => l, (r) => r);
   }
 }

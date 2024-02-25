@@ -1,8 +1,8 @@
-import 'package:course/controllers/auth/token_controller.dart';
 import 'package:course/core/classes/app_snackbar.dart';
 import 'package:course/core/classes/request_status.dart';
 import 'package:course/core/constants/app_routes.dart';
 import 'package:course/core/functions/handling_response_data.dart';
+import 'package:course/core/services/services.dart';
 import 'package:course/data/datasource/api/auth/logout_data.dart';
 import 'package:get/get.dart';
 
@@ -13,22 +13,22 @@ abstract class LogoutControllerAbs extends GetxController {
 }
 
 class LogoutController extends LogoutControllerAbs {
+  Services services = Get.find<Services>();
+
   LogoutData logoutData = LogoutData(Get.find());
   RequestStatus? requestStatus;
 
-  TokenController tokenController = Get.find<TokenController>();
+  late String token;
 
   @override
   logout() async {
     requestStatus = RequestStatus.loading;
     update();
-    var response = await logoutData.logout(token: tokenController.token.value);
+    var response = await logoutData.logout(token: token);
     requestStatus = handlingResponseData(response);
     if (RequestStatus.success == requestStatus) {
       if (response['status'] == "success") {
-        print(response);
         clearToken();
-        print("======= cleared token : ${tokenController.token}");
         goToLogin();
       } else if (response['status'] == "error" ||
           response.containsKey('errors') ||
@@ -50,7 +50,12 @@ class LogoutController extends LogoutControllerAbs {
 
   @override
   clearToken() {
-    tokenController.token.value = '';
+    services.sharedPreferences.setString("user_token", "");
   }
-  // goToLogin();
+
+  @override
+  void onInit() {
+    token = services.sharedPreferences.getString("user_token")!;
+    super.onInit();
+  }
 }

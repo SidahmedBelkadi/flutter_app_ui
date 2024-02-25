@@ -6,8 +6,10 @@ class ForgotPasswordData {
   ForgotPasswordData(this.httpRequest);
 
   forgotPassword({required String email}) async {
-    var response = await httpRequest
-        .post(endpoint: AppLink.forgotPassword, data: {"email": email});
+    var response = await httpRequest.sendRequest(
+        endpoint: AppLink.forgotPassword,
+        data: {"email": email},
+        method: 'POST');
     print(response);
     return response.fold((l) => l, (r) => r);
   }
