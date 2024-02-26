@@ -6,4 +6,5 @@ class AppColors {
   static Color secondaryColor = const Color(0xff2980b9);
   static Color black = const Color(0xff000000);
   static Color backgroundColor = const Color(0xffffffff);
+  static const Color backgroundcolor2 = Color(0xffF8F9FD);
 }

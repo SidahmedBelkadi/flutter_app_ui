@@ -8,10 +8,10 @@ import 'package:course/views/screens/auth/forgot_password/success_reset_password
 import 'package:course/views/screens/auth/success_sign_up.dart';
 import 'package:course/views/screens/auth/forgot_password/verify_code.dart';
 import 'package:course/views/screens/auth/verify_code_sign_up.dart';
-import 'package:course/views/screens/home_screen.dart';
 import 'package:course/views/screens/languages_screen.dart';
 import 'package:course/views/screens/main_screen.dart';
 import 'package:course/views/screens/onboarding_screen.dart';
+import 'package:course/views/screens/products_screen.dart';
 // import 'package:course/views/screens/test_screen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
 
@@ -50,4 +50,7 @@ List<GetPage<dynamic>>? routes = [
 
   // =============================== Home ========================= //
   GetPage(name: AppRoutes.home, page: () => const MainScreen()),
+
+  // =============================== Products ========================= //
+  GetPage(name: AppRoutes.products, page: () => const ProductsScreen()),
 ];

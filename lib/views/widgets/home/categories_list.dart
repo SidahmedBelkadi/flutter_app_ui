@@ -21,44 +21,51 @@ class CategoriesList extends GetView<HomeController> {
         separatorBuilder: (context, index) => const SizedBox(width: 20),
         itemBuilder: (context, index) {
           return Category(
-            categoryModel: CategoryModel.fromJson(controller.categories[index]),
-          );
+              categoryModel:
+                  CategoryModel.fromJson(controller.categories[index]),
+              categoryIndex: index);
         },
       ),
     );
   }
 }
 
-class Category extends StatelessWidget {
+class Category extends GetView<HomeController> {
   final CategoryModel categoryModel;
-  const Category({super.key, required this.categoryModel});
+  final int categoryIndex;
+  const Category(
+      {super.key, required this.categoryModel, required this.categoryIndex});
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Container(
-          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-          decoration: BoxDecoration(
-            color: AppColors.primaryColor.withOpacity(0.4),
-            borderRadius: BorderRadius.circular(12),
+    return InkWell(
+      onTap: () => controller.goToProductsScreen(
+          categories: controller.categories, selectedCategory: categoryIndex),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
+            decoration: BoxDecoration(
+              color: AppColors.primaryColor.withOpacity(0.4),
+              borderRadius: BorderRadius.circular(12),
+            ),
+            child: SvgPicture.network(
+              "${AppLink.staticCategoriesImages}/${categoryModel.image}",
+              height: 50,
+              width: 70,
+              fit: BoxFit.fill,
+              // ignore: deprecated_member_use
+              color: AppColors.secondaryColor,
+            ),
           ),
-          child: SvgPicture.network(
-            "${AppLink.staticCategoriesImages}/${categoryModel.image}",
-            height: 50,
-            width: 70,
-            fit: BoxFit.fill,
-            // ignore: deprecated_member_use
-            color: AppColors.secondaryColor,
+          const SizedBox(height: 5),
+          Text(
+            categoryModel.name!,
+            style: const TextStyle(fontSize: 14),
           ),
-        ),
-        const SizedBox(height: 5),
-        Text(
-          categoryModel.name!,
-          style: const TextStyle(fontSize: 14),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

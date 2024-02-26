@@ -14,4 +14,7 @@ class AppRoutes {
 
   // =============================== Home ========================= //
   static const String home = '/home';
+
+  // =============================== Products ========================= //
+  static const String products = '/products';
 }

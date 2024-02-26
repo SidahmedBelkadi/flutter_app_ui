@@ -1,5 +1,6 @@
 import 'package:course/controllers/home_controller.dart';
 import 'package:course/core/classes/handling_view_data.dart';
+import 'package:course/core/constants/app_colors.dart';
 import 'package:course/views/widgets/home/categories_list.dart';
 import 'package:course/views/widgets/home/custom_app_bar.dart';
 import 'package:course/views/widgets/home/custom_header_card.dart';
@@ -16,9 +17,10 @@ class HomeScreen extends StatelessWidget {
     Get.put(HomeController());
     return SafeArea(
       child: Container(
+        color: AppColors.backgroundcolor2,
         height: Get.height,
         width: double.infinity,
-        padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+        padding: const EdgeInsets.all(15),
         child: ListView(
           children: [
             CustomAppBar(

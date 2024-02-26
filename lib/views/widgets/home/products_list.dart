@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:course/controllers/home_controller.dart';
 import 'package:course/core/constants/app_link.dart';
 import 'package:course/data/models/product_model.dart';
@@ -39,10 +40,11 @@ class Product extends StatelessWidget {
       children: [
         ClipRRect(
           borderRadius: BorderRadius.circular(8),
-          child: Image.network(
-              "${AppLink.staticProductsImages}/${productModel.image}",
-              height: 100,
-              width: 150),
+          child: CachedNetworkImage(
+            imageUrl: "${AppLink.staticProductsImages}/${productModel.image}",
+            height: 100,
+            width: 150,
+          ),
         ),
         Container(
           height: 100,
