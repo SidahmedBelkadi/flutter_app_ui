@@ -5,9 +5,15 @@ class ProductsData {
   HttpRequest httpRequest;
   ProductsData(this.httpRequest);
 
-  productsData({required String token}) async {
+  productsData({required String token, String? categoryId}) async {
+    Map<String, String>? query =
+        categoryId != null ? {"cat": categoryId} : null;
     var response = await httpRequest.sendRequest(
-        endpoint: AppLink.allProducts, data: {}, method: 'GET', token: token);
+        endpoint: AppLink.allProducts,
+        data: {},
+        query: query,
+        method: 'GET',
+        token: token);
     return response.fold((l) => l, (r) => r);
   }
 }

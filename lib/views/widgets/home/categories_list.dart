@@ -40,7 +40,9 @@ class Category extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () => controller.goToProductsScreen(
-          categories: controller.categories, selectedCategory: categoryIndex),
+        categories: controller.categories,
+        selectedCategory: categoryIndex,
+      ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [

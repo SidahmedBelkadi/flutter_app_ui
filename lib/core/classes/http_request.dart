@@ -65,13 +65,18 @@ class HttpRequest {
     required String method,
     required String endpoint,
     required Map data,
+    Map<String, String>? query,
     String token = '',
   }) async {
     try {
       if (await checkInternetConnection()) {
+        Uri uri = query != null
+            ? Uri.parse(endpoint).replace(queryParameters: query)
+            : Uri.parse(endpoint);
+
         final response = await _sendHttpRequest(
           method: method,
-          uri: Uri.parse(endpoint),
+          uri: uri,
           body: jsonEncode(data),
           headers: {
             "accept": "application/json",

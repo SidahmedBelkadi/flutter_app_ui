@@ -10,7 +10,10 @@ import 'package:get/get.dart';
 
 abstract class HomeControllerAbs extends GetxController {
   getData();
-  goToProductsScreen({required List categories, required int selectedCategory});
+  goToProductsScreen({
+    required List categories,
+    required int selectedCategory,
+  });
 }
 
 class HomeController extends HomeControllerAbs {
@@ -98,7 +101,6 @@ class HomeController extends HomeControllerAbs {
       {required List categories, required int selectedCategory}) {
     Get.toNamed(AppRoutes.products, arguments: {
       "categories": categories,
-      "products": products,
       "selectedCategory": selectedCategory,
     });
   }

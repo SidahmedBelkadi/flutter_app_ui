@@ -2,6 +2,7 @@ import 'package:course/data/models/category_model.dart';
 
 class ProductModel {
   CategoryModel? category;
+  int? id;
   String? name;
   String? nameAr;
   String? description;
@@ -32,6 +33,7 @@ class ProductModel {
     category = json['category'] != null
         ? CategoryModel.fromJson(json['category'])
         : null;
+    id = json['id'];
     name = json['name'];
     nameAr = json['name_ar'];
     description = json['description'];
@@ -50,6 +52,7 @@ class ProductModel {
     if (this.category != null) {
       data['category'] = this.category!.toJson();
     }
+    data['id'] = this.id;
     data['name'] = this.name;
     data['name_ar'] = this.nameAr;
     data['description'] = this.description;

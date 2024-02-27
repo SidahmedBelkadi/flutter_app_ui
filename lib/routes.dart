@@ -11,6 +11,7 @@ import 'package:course/views/screens/auth/verify_code_sign_up.dart';
 import 'package:course/views/screens/languages_screen.dart';
 import 'package:course/views/screens/main_screen.dart';
 import 'package:course/views/screens/onboarding_screen.dart';
+import 'package:course/views/screens/product_details_screen.dart';
 import 'package:course/views/screens/products_screen.dart';
 // import 'package:course/views/screens/test_screen.dart';
 import 'package:get/get_navigation/src/routes/get_route.dart';
@@ -53,4 +54,6 @@ List<GetPage<dynamic>>? routes = [
 
   // =============================== Products ========================= //
   GetPage(name: AppRoutes.products, page: () => const ProductsScreen()),
+  GetPage(
+      name: AppRoutes.productDetails, page: () => const ProductDetailsScreen()),
 ];

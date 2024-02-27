@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:course/controllers/products_screen_controller.dart';
+import 'package:course/core/classes/handling_view_data.dart';
 import 'package:course/core/constants/app_colors.dart';
 import 'package:course/core/constants/app_link.dart';
 import 'package:course/data/models/product_model.dart';
@@ -13,44 +14,52 @@ class ProductsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    ProductsScreenController productsScreenController =
-        Get.put(ProductsScreenController());
+    Get.put(ProductsScreenController());
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-          child: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: ListView(
-          children: [
-            CustomAppBar(
-              title: "Find Product",
-              onNotificationIconPressed: () {},
-              onSearchIconPressed: () {},
-            ),
-            const ProductsScreenCategoriesList(),
-            GridView.builder(
-              itemCount: productsScreenController.products.length,
-              shrinkWrap: true,
-              physics: const NeverScrollableScrollPhysics(),
-              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                childAspectRatio: 0.7,
-              ),
-              itemBuilder: (BuildContext context, int index) {
-                return ProductsList(
-                  productModel: ProductModel.fromJson(
-                      productsScreenController.products[index]),
-                );
-              },
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(15.0),
+          child: GetBuilder<ProductsScreenController>(
+            builder: (ProductsScreenController controller) {
+              return ListView(
+                children: [
+                  CustomAppBar(
+                    title: "Find Product",
+                    onNotificationIconPressed: () {},
+                    onSearchIconPressed: () {},
+                  ),
+                  const ProductsScreenCategoriesList(),
+                  HandlingViewData(
+                    requestStatus: controller.requestStatus,
+                    widget: GridView.builder(
+                      itemCount: controller.products.length,
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics(),
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        childAspectRatio: 0.7,
+                      ),
+                      itemBuilder: (BuildContext context, int index) {
+                        return ProductsList(
+                          productModel:
+                              ProductModel.fromJson(controller.products[index]),
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              );
+            },
+          ),
         ),
-      )),
+      ),
     );
   }
 }
 
-class ProductsList extends StatelessWidget {
+class ProductsList extends GetView<ProductsScreenController> {
   final ProductModel productModel;
   const ProductsList({
     super.key,
@@ -60,6 +69,9 @@ class ProductsList extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
+      onTap: () {
+        controller.goToProductDetailsScreen(product: productModel);
+      },
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Container(
@@ -71,10 +83,14 @@ class ProductsList extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              CachedNetworkImage(
-                imageUrl:
-                    "${AppLink.staticProductsImages}/${productModel.image}",
-                fit: BoxFit.fill,
+              Hero(
+                tag: "${productModel.id}",
+                child: CachedNetworkImage(
+                  imageUrl:
+                      "${AppLink.staticProductsImages}/${productModel.image}",
+                  height: 100,
+                  fit: BoxFit.fill,
+                ),
               ),
               const SizedBox(height: 5),
               Text(

@@ -37,7 +37,7 @@ class Category extends GetView<ProductsScreenController> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => controller.changeCategory(categoryIndex),
+      onTap: () => controller.changeCategory(categoryIndex, categoryModel.id!),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
