@@ -44,17 +44,22 @@ class LoginController extends LoginControllerAbs {
       requestStatus = handlingResponseData(response);
       if (RequestStatus.success == requestStatus) {
         if (response['status'] == "success") {
-          String token = response['data']['token']['plainTextToken'];
-          services.sharedPreferences.setString("user_token", token);
-          services.sharedPreferences
-              .setInt("id", response['data']['user']['id']);
-          services.sharedPreferences
-              .setString("username", response['data']['user']['username']);
-          services.sharedPreferences
-              .setString("email", response['data']['user']['email']);
-          services.sharedPreferences
-              .setString("phone", response['data']['user']['phone']);
-          goToHomePage();
+          if (response['data'].isNotEmpty) {
+            String token = response['data']['token']['plainTextToken'];
+            services.sharedPreferences.setString("user_token", token);
+            services.sharedPreferences
+                .setInt("id", response['data']['user']['id']);
+            services.sharedPreferences
+                .setString("username", response['data']['user']['username']);
+            services.sharedPreferences
+                .setString("email", response['data']['user']['email']);
+            services.sharedPreferences
+                .setString("phone", response['data']['user']['phone']);
+            goToHomePage();
+          } else {
+            Get.offNamed(AppRoutes.verifyCodeSignUp,
+                arguments: {"email": email.text});
+          }
         } else if (response['status'] == "error" ||
             response.containsKey('errors') ||
             response.containsKey('message')) {
