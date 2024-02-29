@@ -1,3 +1,4 @@
+import 'package:course/core/constants/app_colors.dart';
 import 'package:course/core/constants/app_images.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -10,5 +11,15 @@ class AppSnackBar {
         backgroundColor: const Color.fromARGB(255, 255, 222, 102),
         colorText: Colors.black,
         icon: LottieBuilder.asset(AppImage.warning));
+  }
+
+  static successSnackBar({required String title, required String message}) {
+    return Get.snackbar(
+      "Success", message,
+      duration: const Duration(seconds: 3),
+      backgroundColor: AppColors.primaryColor,
+      colorText: Colors.black,
+      // icon: LottieBuilder.asset(AppImage.warning)
+    );
   }
 }

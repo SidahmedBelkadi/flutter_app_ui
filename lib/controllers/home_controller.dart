@@ -1,5 +1,3 @@
-// import 'package:course/controllers/categories_controller.dart';
-// import 'package:course/controllers/products_controller.dart';
 import 'package:course/core/classes/request_status.dart';
 import 'package:course/core/constants/app_routes.dart';
 import 'package:course/core/functions/handling_response_data.dart';
@@ -14,6 +12,8 @@ abstract class HomeControllerAbs extends GetxController {
     required List categories,
     required int selectedCategory,
   });
+
+  goToFavoritesSreen();
 }
 
 class HomeController extends HomeControllerAbs {
@@ -51,10 +51,12 @@ class HomeController extends HomeControllerAbs {
       products.assignAll(productsResult);
       categroriesRequestStatus = RequestStatus.none;
       productsRequestStatus = RequestStatus.none;
+      update();
     } else if (categoriesResult is RequestStatus ||
         productsResult is RequestStatus) {
       categroriesRequestStatus = categoriesResult;
       productsRequestStatus = productsResult;
+      update();
     } else {
       categroriesRequestStatus = RequestStatus.failure;
       productsRequestStatus = RequestStatus.failure;
@@ -75,7 +77,7 @@ class HomeController extends HomeControllerAbs {
         return requestStatus = RequestStatus.failure;
       }
     } else {
-      return requestStatus = RequestStatus.serverFailure;
+      return requestStatus;
     }
   }
 
@@ -92,7 +94,7 @@ class HomeController extends HomeControllerAbs {
         return requestStatus = RequestStatus.failure;
       }
     } else {
-      return requestStatus = RequestStatus.serverFailure;
+      return requestStatus;
     }
   }
 
@@ -103,5 +105,10 @@ class HomeController extends HomeControllerAbs {
       "categories": categories,
       "selectedCategory": selectedCategory,
     });
+  }
+
+  @override
+  goToFavoritesSreen() {
+    Get.toNamed(AppRoutes.favoritesProducts);
   }
 }

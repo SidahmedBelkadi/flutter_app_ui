@@ -83,7 +83,7 @@ class HttpRequest {
             "Content-Type": "application/json",
             "Authorization": "Bearer $token",
           },
-        ).timeout(const Duration(seconds: 15)).catchError((error) {
+        ).timeout(const Duration(seconds: 10)).catchError((error) {
           // Handle TimeoutException
           if (error is TimeoutException) {
             return http.Response(

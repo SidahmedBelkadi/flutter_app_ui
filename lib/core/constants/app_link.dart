@@ -22,6 +22,14 @@ class AppLink {
 // ============================================= Categories ==========================//
   static const String allCategories = "$server/categories";
 
-  // ============================================= Categories ==========================//
+  // ============================================= Products ==========================//
   static const String allProducts = "$server/products";
+
+  // ============================================= Favorites Products ==========================//
+  static const String allFavoritesProducts = "$server/favorites";
+  static const String addProductToFavorites = "$server/add-product-favorites";
+  static const String removeProductFromFavorites =
+      "$server/remove-product-favorites";
+  static const String deleteProductFRomfavoritesList =
+      "$server/delete-product-favorites";
 }

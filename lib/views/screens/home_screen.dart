@@ -14,7 +14,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(HomeController());
+    HomeController homeController = Get.put(HomeController());
     return SafeArea(
       child: Container(
         color: AppColors.backgroundcolor2,
@@ -27,6 +27,7 @@ class HomeScreen extends StatelessWidget {
               title: "Find Product",
               onNotificationIconPressed: () {},
               onSearchIconPressed: () {},
+              onFavoritesIconPressed: () => homeController.goToFavoritesSreen(),
             ),
             const SizedBox(height: 20),
             const CustomHeaderCard(

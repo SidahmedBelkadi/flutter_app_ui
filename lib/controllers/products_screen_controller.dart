@@ -11,6 +11,7 @@ abstract class ProductsScreenControllerAbs extends GetxController {
   getAllProductsData(String categoryId);
   changeCategory(int index, int categoryId);
   goToProductDetailsScreen({required ProductModel product});
+  goToFavoritesSreen();
 }
 
 class ProductsScreenController extends ProductsScreenControllerAbs {
@@ -76,5 +77,10 @@ class ProductsScreenController extends ProductsScreenControllerAbs {
   @override
   goToProductDetailsScreen({required ProductModel product}) {
     Get.toNamed(AppRoutes.productDetails, arguments: {"product": product});
+  }
+
+  @override
+  goToFavoritesSreen() {
+    Get.toNamed(AppRoutes.favoritesProducts);
   }
 }

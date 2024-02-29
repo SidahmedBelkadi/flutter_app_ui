@@ -1,5 +1,4 @@
 import 'package:course/controllers/main_screen_controller.dart';
-import 'package:course/core/constants/app_colors.dart';
 import 'package:course/views/widgets/nav_bar/custom_nav_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

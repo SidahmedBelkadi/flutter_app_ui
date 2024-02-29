@@ -3,7 +3,6 @@ import 'package:course/core/constants/app_colors.dart';
 import 'package:course/core/constants/app_link.dart';
 import 'package:course/data/models/product_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class ProductDetailsScreenImagePresentation extends StatelessWidget {
   const ProductDetailsScreenImagePresentation({
@@ -29,11 +28,11 @@ class ProductDetailsScreenImagePresentation extends StatelessWidget {
           top: 50,
           child: Center(
             child: Hero(
-              tag: "${product.id}",
+              tag: "${product.image}",
               child: CachedNetworkImage(
                 imageUrl: "${AppLink.staticProductsImages}/${product.image}",
                 height: 300,
-                width: Get.width / 2,
+                width: 300,
                 fit: BoxFit.fill,
               ),
             ),

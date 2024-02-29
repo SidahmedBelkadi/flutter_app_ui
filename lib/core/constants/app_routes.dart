@@ -18,4 +18,7 @@ class AppRoutes {
   // =============================== Products ========================= //
   static const String products = '/products';
   static const String productDetails = '/products_details';
+
+  // =============================== Favorites Products ========================= //
+  static const String favoritesProducts = '/favorites_products';
 }
