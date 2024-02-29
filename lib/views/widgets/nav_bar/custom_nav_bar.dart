@@ -1,4 +1,5 @@
 import 'package:course/controllers/main_screen_controller.dart';
+import 'package:course/core/constants/app_colors.dart';
 import 'package:course/views/widgets/nav_bar/custom_nav_bar_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -13,7 +14,8 @@ class CustomBottomNavigationBar extends StatelessWidget {
     return GetBuilder<MainScreenController>(
       builder: (MainScreenController controller) {
         return BottomAppBar(
-          color: Colors.white,
+          height: 50,
+          color: AppColors.primaryColor,
           shape: const CircularNotchedRectangle(),
           notchMargin: 5,
           // elevation: 1,
@@ -24,8 +26,10 @@ class CustomBottomNavigationBar extends StatelessWidget {
               return index == 2
                   ? const Spacer()
                   : CustomBottomAppBarItem(
-                      title: controller.screensTitles[i],
-                      icon: controller.screeensIcons[i],
+                      // title: controller.screensTitles[i],
+                      icon: controller.currentScreen == i
+                          ? controller.screeensIconsActive[i]
+                          : controller.screeensIcons[i],
                       onPressed: () => controller.changeScreen(i),
                       active: controller.currentScreen == i,
                     );

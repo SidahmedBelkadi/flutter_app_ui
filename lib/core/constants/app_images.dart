@@ -11,6 +11,7 @@ class AppImage {
       "$rootImagesPath/onboardingthree.PNG";
   static const String onBoardingImageFour =
       "$rootImagesPath/onboardingfour.PNG";
+  static const String avatar = "$rootImagesPath/avatar.png";
 
   //Lottie
   static const String loading = "$rootLottie/loading2.json";

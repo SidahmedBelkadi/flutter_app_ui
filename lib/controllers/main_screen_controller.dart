@@ -1,4 +1,5 @@
 import 'package:course/views/screens/home_screen.dart';
+import 'package:course/views/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
@@ -10,23 +11,26 @@ class MainScreenController extends MainScreenControllerAbs {
   List<Widget> screens = [
     const HomeScreen(),
     const Center(
-      child: Text("Settings"),
+      child: Text("Notifdications"),
     ),
+    const SettingsScreen(),
     const Center(
       child: Text("Profile"),
     ),
-    const Center(
-      child: Text("Favorites"),
-    ),
   ];
-
-  List<String> screensTitles = ['Home', 'Settings', 'Profile', 'Fav'];
 
   List screeensIcons = [
     Icons.home_outlined,
+    Icons.notifications_outlined,
     Icons.settings_outlined,
     Icons.person_outline,
-    Icons.favorite_outline
+  ];
+
+  List screeensIconsActive = [
+    Icons.home,
+    Icons.notifications,
+    Icons.settings,
+    Icons.person,
   ];
 
   int currentScreen = 0;

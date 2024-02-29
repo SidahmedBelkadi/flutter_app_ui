@@ -8,6 +8,7 @@ class CustomAppBar extends StatelessWidget {
     required this.onSearchIconPressed,
     this.onFavoritesIconPressed,
     this.disableFavoriteIcon = false,
+    this.disableNotificationIcon = false,
   });
 
   final String title;
@@ -15,6 +16,7 @@ class CustomAppBar extends StatelessWidget {
   final void Function()? onFavoritesIconPressed;
   final void Function()? onSearchIconPressed;
   final bool disableFavoriteIcon;
+  final bool disableNotificationIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -42,19 +44,27 @@ class CustomAppBar extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(width: 10),
-          Container(
-            padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 4),
-            decoration: BoxDecoration(
-                color: Colors.grey[200],
-                borderRadius: BorderRadius.circular(12)),
-            child: IconButton(
-              onPressed: onNotificationIconPressed,
-              icon: const Icon(Icons.notifications_active_outlined, size: 30),
-            ),
-          ),
+          disableNotificationIcon == true
+              ? const SizedBox()
+              : Row(
+                  children: [
+                    const SizedBox(width: 10),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 8, horizontal: 4),
+                      decoration: BoxDecoration(
+                          color: Colors.grey[200],
+                          borderRadius: BorderRadius.circular(12)),
+                      child: IconButton(
+                        onPressed: onNotificationIconPressed,
+                        icon: const Icon(Icons.notifications_active_outlined,
+                            size: 30),
+                      ),
+                    ),
+                  ],
+                ),
           disableFavoriteIcon == true
-              ? const Row()
+              ? const SizedBox()
               : Row(
                   children: [
                     const SizedBox(width: 10),

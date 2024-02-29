@@ -28,6 +28,7 @@ class HomeScreen extends StatelessWidget {
               onNotificationIconPressed: () {},
               onSearchIconPressed: () {},
               onFavoritesIconPressed: () => homeController.goToFavoritesSreen(),
+              disableNotificationIcon: true,
             ),
             const SizedBox(height: 20),
             const CustomHeaderCard(

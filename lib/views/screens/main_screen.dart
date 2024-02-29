@@ -18,7 +18,8 @@ class MainScreen extends StatelessWidget {
           child: FloatingActionButton(
             mini: false,
             backgroundColor: AppColors.primaryColor,
-            // elevation: 20,
+            foregroundColor: Colors.black,
+            elevation: 0,
             onPressed: () {},
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
