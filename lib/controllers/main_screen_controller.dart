@@ -1,10 +1,13 @@
+import 'package:course/core/constants/app_routes.dart';
 import 'package:course/views/screens/home_screen.dart';
 import 'package:course/views/screens/settings_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_controllers.dart';
 
 abstract class MainScreenControllerAbs extends GetxController {
   changeScreen(int index);
+  goToCartScreen();
 }
 
 class MainScreenController extends MainScreenControllerAbs {
@@ -39,5 +42,10 @@ class MainScreenController extends MainScreenControllerAbs {
   changeScreen(int index) {
     currentScreen = index;
     update();
+  }
+
+  @override
+  goToCartScreen() {
+    Get.toNamed(AppRoutes.cart);
   }
 }

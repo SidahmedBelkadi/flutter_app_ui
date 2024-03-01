@@ -32,4 +32,10 @@ class AppLink {
       "$server/remove-product-favorites";
   static const String deleteProductFRomfavoritesList =
       "$server/delete-product-favorites";
+
+  // ============================================= Cart ==========================//
+  static const String getAllCartProducts = "$server/cart";
+  static const String addProductToCart = "$server/add-product-cart";
+  static const String removeProductFromCart = "$server/remove-product-cart";
+  static const String getProductQuantityCount = "$server/get-product-count";
 }

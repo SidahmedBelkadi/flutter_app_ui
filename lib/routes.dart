@@ -8,6 +8,7 @@ import 'package:course/views/screens/auth/forgot_password/success_reset_password
 import 'package:course/views/screens/auth/success_sign_up.dart';
 import 'package:course/views/screens/auth/forgot_password/verify_code.dart';
 import 'package:course/views/screens/auth/verify_code_sign_up.dart';
+import 'package:course/views/screens/cart_screen.dart';
 import 'package:course/views/screens/favorites_screen.dart';
 import 'package:course/views/screens/languages_screen.dart';
 import 'package:course/views/screens/main_screen.dart';
@@ -61,4 +62,7 @@ List<GetPage<dynamic>>? routes = [
   // =============================== Favorites Products ========================= //
   GetPage(
       name: AppRoutes.favoritesProducts, page: () => const FavoritesScreen()),
+
+  // =============================== Cart ========================= //
+  GetPage(name: AppRoutes.cart, page: () => const CartScreen())
 ];

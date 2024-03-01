@@ -21,4 +21,7 @@ class AppRoutes {
 
   // =============================== Favorites Products ========================= //
   static const String favoritesProducts = '/favorites_products';
+
+  // ===============================  Cart ========================= //
+  static const String cart = '/cart';
 }

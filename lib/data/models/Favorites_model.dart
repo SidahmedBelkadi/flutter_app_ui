@@ -11,7 +11,7 @@ class FavoritesModel {
   String? image;
   int? quantity;
   int? isActive;
-  int? price;
+  double? price;
   int? discount;
   String? createdAt;
   String? updatedAt;
@@ -47,7 +47,7 @@ class FavoritesModel {
     image = json['image'];
     quantity = json['quantity'];
     isActive = json['is_active'];
-    price = json['price'];
+    price = json['price'].toDouble();
     discount = json['discount'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];

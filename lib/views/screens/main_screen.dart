@@ -9,7 +9,7 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Get.put(MainScreenController());
+    MainScreenController mainScreenController = Get.put(MainScreenController());
     return GetBuilder<MainScreenController>(
       builder: (controller) => Scaffold(
         floatingActionButton: SizedBox(
@@ -20,7 +20,7 @@ class MainScreen extends StatelessWidget {
             backgroundColor: AppColors.primaryColor,
             foregroundColor: Colors.black,
             elevation: 0,
-            onPressed: () {},
+            onPressed: () => mainScreenController.goToCartScreen(),
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
             child: const Icon(Icons.card_travel_outlined),

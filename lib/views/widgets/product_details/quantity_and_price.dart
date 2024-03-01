@@ -8,9 +8,11 @@ class PriceAndQuantitySelection extends StatelessWidget {
     required this.product,
     required this.onAddQuantityPressed,
     required this.onRemoveQuantityPressed,
+    required this.count,
   });
 
   final ProductModel product;
+  final int count;
   final void Function()? onAddQuantityPressed;
   final void Function()? onRemoveQuantityPressed;
 
@@ -22,7 +24,7 @@ class PriceAndQuantitySelection extends StatelessWidget {
         Row(
           children: [
             IconButton(
-              onPressed: () {},
+              onPressed: onAddQuantityPressed,
               icon: const Icon(Icons.add),
             ),
             Container(
@@ -33,13 +35,13 @@ class PriceAndQuantitySelection extends StatelessWidget {
                 borderRadius: BorderRadius.circular(6),
               ),
               alignment: Alignment.center,
-              child: const Text(
-                '3',
-                style: TextStyle(fontSize: 14),
+              child: Text(
+                '$count',
+                style: const TextStyle(fontSize: 14),
               ),
             ),
             IconButton(
-              onPressed: () {},
+              onPressed: onRemoveQuantityPressed,
               icon: const Icon(Icons.remove),
             ),
           ],
