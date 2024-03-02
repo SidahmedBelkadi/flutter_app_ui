@@ -27,7 +27,7 @@ class FavoritesScreen extends StatelessWidget {
                     physics: const NeverScrollableScrollPhysics(),
                     gridDelegate:
                         const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, childAspectRatio: 0.7),
+                            crossAxisCount: 2, childAspectRatio: 0.6),
                     itemCount: controller.favorites.length,
                     itemBuilder: (context, index) => CustomFavoriteGridItem(
                         favorite: controller.favorites[index]),

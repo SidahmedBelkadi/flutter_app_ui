@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:course/controllers/carts_controller.dart';
 import 'package:course/core/classes/handling_view_data.dart';
 import 'package:course/core/constants/app_colors.dart';
+import 'package:course/core/constants/app_images.dart';
 import 'package:course/core/constants/app_link.dart';
 import 'package:course/data/models/cart_model.dart';
 import 'package:flutter/material.dart';
@@ -37,17 +38,18 @@ class CartScreen extends StatelessWidget {
                   ...List.generate(
                     controller.cart.length,
                     (index) {
-                      List<CartModel> cart = controller.cart;
                       return CustomCardItem(
-                        name: cart[index].productName!,
-                        price: "${cart[index].productPrice!}",
-                        count: "${cart[index].productCount!}",
+                        name: controller.cart[index].productName!,
+                        price: "${controller.cart[index].productPrice!}",
+                        discountPrice:
+                            "${controller.cart[index].productDicountPrice!}",
+                        count: "${controller.cart[index].productCount!}",
                         image:
-                            "${AppLink.staticProductsImages}/${cart[index].productImage}",
-                        onAddProductToCartPressed: () =>
-                            controller.add(productId: cart[index].productId!),
+                            "${AppLink.staticProductsImages}/${controller.cart[index].productImage}",
+                        onAddProductToCartPressed: () => controller.add(
+                            productId: controller.cart[index].productId!),
                         onRemoveProductToCartPressed: () => controller.remove(
-                            productId: cart[index].productId!),
+                            productId: controller.cart[index].productId!),
                       );
                     },
                   ),
@@ -168,10 +170,12 @@ class CustomCardItem extends StatelessWidget {
     required this.image,
     required this.onAddProductToCartPressed,
     required this.onRemoveProductToCartPressed,
+    required this.discountPrice,
   });
 
   final String name;
   final String price;
+  final String discountPrice;
   final String count;
   final String image;
   final void Function()? onAddProductToCartPressed;
@@ -181,61 +185,108 @@ class CustomCardItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 110,
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(0),
-        ),
-        surfaceTintColor: Colors.white,
-        child: Padding(
-          padding: const EdgeInsets.all(10.0),
-          child: Row(
-            children: [
-              Expanded(
-                flex: 2,
-                child: CachedNetworkImage(imageUrl: image),
-              ),
-              const SizedBox(width: 20),
-              Expanded(
-                flex: 3,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    Text(name,
-                        textAlign: TextAlign.left,
-                        style: const TextStyle(fontSize: 14)),
-                    Text(
-                      "$price \$",
-                      style: TextStyle(
-                        color: AppColors.primaryColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14,
-                      ),
+      child: Stack(
+        children: [
+          Card(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(0),
+            ),
+            surfaceTintColor: Colors.white,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 2,
+                    child: CachedNetworkImage(imageUrl: image),
+                  ),
+                  const SizedBox(width: 20),
+                  Expanded(
+                    flex: 3,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Text(name,
+                            textAlign: TextAlign.left,
+                            style: const TextStyle(fontSize: 14)),
+                        price == discountPrice
+                            ? Text(
+                                "$discountPrice \$",
+                                style: TextStyle(
+                                  color: AppColors.primaryColor,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                ),
+                              )
+                            : Row(
+                                children: [
+                                  Stack(
+                                    children: [
+                                      Text(
+                                        "$price \$",
+                                        style: TextStyle(
+                                          color: AppColors.primaryColor,
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 14,
+                                        ),
+                                      ),
+                                      Positioned(
+                                        top: 10,
+                                        left: 0,
+                                        right: 0,
+                                        child: Container(
+                                          height: 2,
+                                          width: 50,
+                                          color: AppColors.primaryColor,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                  const SizedBox(width: 10),
+                                  Text(
+                                    "$discountPrice \$",
+                                    style: TextStyle(
+                                      color: AppColors.primaryColor,
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                      ],
                     ),
-                  ],
-                ),
-              ),
-              const SizedBox(width: 20),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                    GestureDetector(
-                      onTap: onAddProductToCartPressed,
-                      child: const Icon(Icons.add, size: 20),
+                  ),
+                  const SizedBox(width: 20),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        GestureDetector(
+                          onTap: onAddProductToCartPressed,
+                          child: const Icon(Icons.add, size: 20),
+                        ),
+                        Text(count, style: const TextStyle(fontSize: 14)),
+                        GestureDetector(
+                          onTap: onRemoveProductToCartPressed,
+                          child: const Icon(Icons.remove, size: 20),
+                        ),
+                      ],
                     ),
-                    Text(count, style: const TextStyle(fontSize: 14)),
-                    GestureDetector(
-                      onTap: onRemoveProductToCartPressed,
-                      child: const Icon(Icons.remove, size: 20),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
+          price != discountPrice
+              ? Image.asset(
+                  AppImage.saleTag,
+                  width: 30,
+                  height: 30,
+                )
+              : const Center(),
+        ],
       ),
     );
   }

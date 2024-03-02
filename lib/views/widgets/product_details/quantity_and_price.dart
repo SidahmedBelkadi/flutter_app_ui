@@ -47,7 +47,7 @@ class PriceAndQuantitySelection extends StatelessWidget {
           ],
         ),
         Text(
-          "${product.price!} \$",
+          "${product.discountPrice!} \$",
           style: TextStyle(
             fontSize: 22,
             fontWeight: FontWeight.bold,

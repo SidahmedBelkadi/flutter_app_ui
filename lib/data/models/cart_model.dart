@@ -4,8 +4,10 @@ class CartModel {
   String? productName;
   String? productImage;
   double? productPrice;
+  double? productDicountPrice;
   int? productCount;
   double? totalPricePerProduct;
+  double? totalDiscountPricePerProduct;
   String? latestCartCreatedAt;
 
   CartModel(
@@ -24,21 +26,26 @@ class CartModel {
     productName = json['product_name'];
     productImage = json['product_image'];
     productPrice = json['product_price'].toDouble();
+    productDicountPrice = json['discount_price'].toDouble();
     productCount = json['product_count'];
     totalPricePerProduct = json['total_price_per_product'].toDouble();
+    totalDiscountPricePerProduct =
+        json['total_discount_price_per_product'].toDouble();
     latestCartCreatedAt = json['latest_cart_created_at'];
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['user_id'] = this.userId;
-    data['product_id'] = this.productId;
-    data['product_name'] = this.productName;
-    data['product_image'] = this.productImage;
-    data['product_price'] = this.productPrice;
-    data['product_count'] = this.productCount;
-    data['total_price_per_product'] = this.totalPricePerProduct;
-    data['latest_cart_created_at'] = this.latestCartCreatedAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['user_id'] = userId;
+    data['product_id'] = productId;
+    data['product_name'] = productName;
+    data['product_image'] = productImage;
+    data['product_price'] = productPrice;
+    data['discount_price'] = productDicountPrice;
+    data['product_count'] = productCount;
+    data['total_price_per_product'] = totalPricePerProduct;
+    data['total_discount_price_per_product'] = totalDiscountPricePerProduct;
+    data['latest_cart_created_at'] = latestCartCreatedAt;
     return data;
   }
 }

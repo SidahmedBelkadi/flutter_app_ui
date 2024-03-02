@@ -50,7 +50,7 @@ class ProductsScreen extends StatelessWidget {
                             gridDelegate:
                                 const SliverGridDelegateWithFixedCrossAxisCount(
                               crossAxisCount: 2,
-                              childAspectRatio: 0.7,
+                              childAspectRatio: 0.6,
                             ),
                             itemBuilder: (BuildContext context, int index) {
                               favoritesController.favorites[

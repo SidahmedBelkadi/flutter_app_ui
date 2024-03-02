@@ -9,6 +9,7 @@ class ProductModel {
   int? isActive;
   double? price;
   int? discount;
+  double? discountPrice;
   int? categoryId;
   String? categoryName;
   String? categoryNameAr;
@@ -26,6 +27,7 @@ class ProductModel {
       this.isActive,
       this.price,
       this.discount,
+      this.discountPrice,
       this.categoryId,
       this.categoryName,
       this.categoryNameAr,
@@ -43,6 +45,7 @@ class ProductModel {
     isActive = json['is_active'];
     price = json['price'].toDouble();
     discount = json['discount'];
+    discountPrice = json['discount_price'].toDouble();
     categoryId = json['category_id'];
     categoryName = json['category_name'];
     categoryNameAr = json['category_name_ar'];
@@ -51,22 +54,23 @@ class ProductModel {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['name_ar'] = this.nameAr;
-    data['description'] = this.description;
-    data['description_ar'] = this.descriptionAr;
-    data['image'] = this.image;
-    data['quantity'] = this.quantity;
-    data['is_active'] = this.isActive;
-    data['price'] = this.price;
-    data['discount'] = this.discount;
-    data['category_id'] = this.categoryId;
-    data['category_name'] = this.categoryName;
-    data['category_name_ar'] = this.categoryNameAr;
-    data['category_image'] = this.categoryImage;
-    data['favorite'] = this.favorite;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['name'] = name;
+    data['name_ar'] = nameAr;
+    data['description'] = description;
+    data['description_ar'] = descriptionAr;
+    data['image'] = image;
+    data['quantity'] = quantity;
+    data['is_active'] = isActive;
+    data['price'] = price;
+    data['discount'] = discount;
+    data['discount_price'] = discountPrice;
+    data['category_id'] = categoryId;
+    data['category_name'] = categoryName;
+    data['category_name_ar'] = categoryNameAr;
+    data['category_image'] = categoryImage;
+    data['favorite'] = favorite;
     return data;
   }
 }
