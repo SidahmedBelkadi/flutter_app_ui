@@ -1,7 +1,7 @@
 import 'package:course/controllers/favorites_screen_controller.dart';
 import 'package:course/core/classes/handling_view_data.dart';
+import 'package:course/core/constants/app_colors.dart';
 import 'package:course/views/widgets/favorites/custom_favorites_item.dart';
-import 'package:course/views/widgets/home/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,17 +12,12 @@ class FavoritesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     Get.put(FavoritesScreenController());
     return Scaffold(
+      appBar: buildAppBar(context),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: ListView(
             children: [
-              CustomAppBar(
-                title: "Find Product",
-                onNotificationIconPressed: () {},
-                onSearchIconPressed: () {},
-                disableFavoriteIcon: true,
-              ),
               const SizedBox(height: 20),
               GetBuilder<FavoritesScreenController>(
                 builder: (controller) => HandlingViewData(
@@ -43,6 +38,23 @@ class FavoritesScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  AppBar buildAppBar(BuildContext context) {
+    return AppBar(
+      elevation: 0,
+      title: Text(
+        "My favorites products",
+        style: Theme.of(context)
+            .textTheme
+            .displayLarge!
+            .copyWith(color: AppColors.grey),
+      ),
+      backgroundColor: AppColors.backgroundColor,
+      centerTitle: true,
+      leading: GestureDetector(
+          onTap: () => Get.back(), child: const Icon(Icons.arrow_back)),
     );
   }
 }

@@ -4,19 +4,25 @@ class CustomAppBar extends StatelessWidget {
   const CustomAppBar({
     super.key,
     required this.title,
-    required this.onNotificationIconPressed,
-    required this.onSearchIconPressed,
+    this.onNotificationIconPressed,
     this.onFavoritesIconPressed,
     this.disableFavoriteIcon = false,
     this.disableNotificationIcon = false,
+    required this.onSearchChanged,
+    required this.searchController,
+    required this.isTyping,
+    required this.onClearIconPressed,
   });
 
   final String title;
   final void Function()? onNotificationIconPressed;
   final void Function()? onFavoritesIconPressed;
-  final void Function()? onSearchIconPressed;
+  final void Function(String value)? onSearchChanged;
+  final void Function()? onClearIconPressed;
+  final TextEditingController searchController;
   final bool disableFavoriteIcon;
   final bool disableNotificationIcon;
+  final bool isTyping;
 
   @override
   Widget build(BuildContext context) {
@@ -26,11 +32,16 @@ class CustomAppBar extends StatelessWidget {
         children: [
           Expanded(
             child: TextField(
+              keyboardType: TextInputType.text,
               decoration: InputDecoration(
-                prefixIcon: IconButton(
-                  onPressed: onSearchIconPressed,
-                  icon: const Icon(Icons.search_outlined, size: 25),
-                ),
+                prefixIcon: isTyping != true
+                    ? const Icon(Icons.search_outlined, size: 25)
+                    : null,
+                suffixIcon: isTyping == true
+                    ? GestureDetector(
+                        onTap: onClearIconPressed,
+                        child: const Icon(Icons.clear, size: 22))
+                    : null,
                 hintText: title,
                 hintStyle: const TextStyle(fontSize: 18),
                 contentPadding:
@@ -42,6 +53,8 @@ class CustomAppBar extends StatelessWidget {
                   borderSide: BorderSide.none,
                 ),
               ),
+              controller: searchController,
+              onChanged: onSearchChanged,
             ),
           ),
           disableNotificationIcon == true

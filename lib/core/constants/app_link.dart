@@ -23,6 +23,7 @@ class AppLink {
   static const String allCategories = "$server/categories";
 
   // ============================================= Products ==========================//
+  static const String searchProducts = "$server/search-products";
   static const String allProducts = "$server/products";
 
   // ============================================= Favorites Products ==========================//

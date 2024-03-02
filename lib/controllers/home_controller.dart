@@ -4,6 +4,7 @@ import 'package:course/core/functions/handling_response_data.dart';
 import 'package:course/core/services/services.dart';
 import 'package:course/data/datasource/api/categories_data.dart';
 import 'package:course/data/datasource/api/products_data.dart';
+import 'package:course/data/models/product_model.dart';
 import 'package:get/get.dart';
 
 abstract class HomeControllerAbs extends GetxController {
@@ -14,6 +15,7 @@ abstract class HomeControllerAbs extends GetxController {
   });
 
   goToFavoritesSreen();
+  goToProductDetailScreen({required ProductModel product});
 }
 
 class HomeController extends HomeControllerAbs {
@@ -110,5 +112,10 @@ class HomeController extends HomeControllerAbs {
   @override
   goToFavoritesSreen() {
     Get.toNamed(AppRoutes.favoritesProducts);
+  }
+
+  @override
+  goToProductDetailScreen({required ProductModel product}) {
+    Get.toNamed(AppRoutes.productDetails, arguments: {"product": product});
   }
 }

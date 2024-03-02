@@ -28,6 +28,7 @@ class MainScreen extends StatelessWidget {
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: const CustomBottomNavigationBar(),
+        resizeToAvoidBottomInset: false,
         body: controller.screens.elementAt(controller.currentScreen),
       ),
     );
